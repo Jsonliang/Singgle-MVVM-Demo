@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/fm_shots_sort"
+        android:icon="@mipmap/ic_more"
+        android:title="@string/sort"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/fm_shots_small_info"
+                android:title="@string/small_with_info" />
+            <item
+                android:id="@+id/fm_shots_large_info"
+                android:title="@string/large_with_info" />
+            <item
+                android:id="@+id/fm_shots_small"
+                android:title="@string/small_without_info" />
+            <item
+                android:id="@+id/fm_shots_large"
+                android:title="@string/large_without_info" />
+        </menu>
+    </item>
+
+
+</menu>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.adgvcxz.adgble.model.ShotItemViewModel" />
+
+        <import type="com.adgvcxz.adgble.util.ThemeUtil" />
+
+        <import type="com.adgvcxz.adgble.util.TimeUtil" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="12dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                app:actualImageScaleType="focusCrop"
+                app:imageUrl="@{item.user.avatar}"
+                app:placeholderImage="@mipmap/ic_default_avatar"
+                app:placeholderImageScaleType="focusCrop"
+                app:roundAsCircle="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingRight="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="@{item.title}"
+                    android:textColor="@color/color_accent"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="4dp"
+                        android:text="@string/by"
+                        android:textSize="13sp"
+                        app:textSecondColor="@{ThemeUtil.theme}" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:maxLines="1"
+                        android:text="@{item.user.username}"
+                        android:textSize="13sp"
+                        app:textPrimaryColor="@{ThemeUtil.theme}" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/ic_shot_time"
+                        android:drawablePadding="4dp"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:text="@{TimeUtil.getTimeYMD(item.createdAt)}"
+                        android:textSize="13sp"
+                        app:textPrimaryColor="@{ThemeUtil.theme}" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="4dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:textSize="14sp"
+            android:visibility="@{TextUtils.isEmpty(item.description) ? View.GONE : View.VISIBLE}"
+            app:html="@{item.description}"
+            app:textSecondColor="@{ThemeUtil.theme}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            app:secondBackgroundTheme="@{ThemeUtil.theme}">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/itemShotLike"
+                    android:drawableLeft="@mipmap/ic_shot_like_normal"
+                    android:text="@{@string/n_likes(item.likesCount)}"
+                    android:onClick="@{(v) -> item.like(v)}"
+                    android:background="?attr/selectableItemBackground"
+                    app:textSecondColor="@{ThemeUtil.theme}" />
+
+                <TextView
+                    style="@style/itemShotLike"
+                    android:drawableLeft="@mipmap/ic_shot_bucket"
+                    android:text="@{@string/n_buckets(item.bucketsCount)}"
+                    app:textSecondColor="@{ThemeUtil.theme}" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/itemShotLike"
+                    android:drawableLeft="@mipmap/ic_shot_view_normal"
+                    android:text="@{@string/n_views(item.viewsCount)}"
+                    app:textSecondColor="@{ThemeUtil.theme}" />
+
+                <TextView
+                    style="@style/itemShotLike"
+                    android:drawableLeft="@mipmap/ic_shot_share"
+                    android:text="@string/share"
+                    android:onClick="@{(v) -> item.share(v)}"
+                    android:background="?attr/selectableItemBackground"
+                    app:textSecondColor="@{ThemeUtil.theme}" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <com.adgvcxz.adgble.view.TagsViewGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp"
+            app:horizontal_spacing="8dp"
+            app:inner_horizontal_spacing="16dp"
+            app:inner_vertical_spacing="4dp"
+            app:onTagClickListener="@{(view, position, tag) -> item.onClickTag(view, position, tag)}"
+            app:tags="@{item.tags}"
+            app:vertical_spacing="8dp" />
+
+    </LinearLayout>
+</layout>

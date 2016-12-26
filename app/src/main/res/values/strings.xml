@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Dribbble</string>
+    <string name="loading">loading</string>
+    <string name="load_failed">Load failed retry again!</string>
+    <string name="default_font">default</string>
+    <string name="shots">Shots</string>
+    <string name="day_theme">Day Theme</string>
+    <string name="night_theme">Night Theme</string>
+    <string name="large_without_info">Large without info</string>
+    <string name="sort">Sort</string>
+    <string name="small_with_info">Small with info</string>
+    <string name="large_with_info">Large with info</string>
+    <string name="small_without_info">Small without info</string>
+    <string name="sans_serif_medium">sans-serif-medium</string>
+    <string name="n_likes">%d Likes</string>
+    <string name="n_buckets">%d Buckets</string>
+    <string name="n_views">%d Views</string>
+    <string name="share">Share</string>
+    <string name="by">by</string>
+    <string name="like">Like</string>
+    <string name="reply">Reply</string>
+    <string name="copy">Copy</string>
+    <string name="click_here_to_sign_in">Click here to sign in</string>
+    <string-array name="shots_sorts">
+        <item>Popular</item>
+        <item>Recent</item>
+    </string-array>
+</resources>

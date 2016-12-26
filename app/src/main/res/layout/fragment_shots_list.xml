@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.adgvcxz.adgble.model.ShotsListViewModel" />
+
+        <import type="com.adgvcxz.adgble.util.ThemeUtil" />
+    </data>
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:colorPrimaryTheme="@{ThemeUtil.theme}"
+        app:onRefreshListener="@{model.onRefreshListener}"
+        app:refreshing="@{model.refreshing}"
+        app:topMargin="@{model.topMargin}">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@id/shotsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:adapter="@{model.adapter}"
+            app:colorPrimaryTheme="@{ThemeUtil.theme}"
+            app:isLoadAll="@{model.isLoadAll}"
+            app:itemView="@{model.itemView}"
+            app:items="@{model.items}"
+            app:layoutManager="@{model.layoutManager}"
+            app:loadMore="@{model.loadMore}"
+            app:onClickLoadMore="@{model.onLoadMoreClickListener}"
+            app:onItemClickListener="@{model.clickListener}"
+            app:onScrollListener="@{model.onScrollListener}"
+            app:topMarginSelector="@{model.topMarginSelector}" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</layout>
